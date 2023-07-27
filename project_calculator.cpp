@@ -12,15 +12,19 @@ Project Calculator
 		3. develop command-line parser for command-line execution and input
 		4. develop basic graphical user interface for execution and input
 		5. develop program version in C++ and Python
+		6. analyze assembly code to understand low-level actions occuring in the program
+		7. analyze memory usage to understand stack vs heap memory allocated
 
 	Tasks:
 		1. setup command-line GCC to complile C++ code...DONE!
-		2. build basic arithmetic calculator that can add two numbers via input after runtime...DONE!
+		2. build basic arithmetic calculator that can add two numbers via prompt input after runtime...DONE!
 		3. setup command-line git to enable upload of code into a github repository.
+		5. setup add capability as its own "object" (function or class).
 		4. add subtraction capability.
 		5. add multiplication capability.
 		6. add division capability.
-		7. increase to multiple numbers of input with respect to order of operations.
+		7. develop capability to input and parse out a string (e.g. 1+4 instead of 1 ENTER 4 ENTER).
+		8. program in the order of operations to correctly solve problems in order and detect bad inputs
 
 Git Commands
 	git config --global user.name "buchananmatt"
@@ -35,6 +39,7 @@ Git Commands
 */
 
 #include<iostream>
+
 using namespace std;
 
 int main() 
