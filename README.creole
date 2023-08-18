@@ -29,7 +29,9 @@ The program can be ran from the file explorer by running the file "calc.out", or
 
 ==Known Issues
 
-===Invalid User Input. This program will check to ensure only valid integers and operators are input, however a user could still pass in expressions with double operators or leading operators, causing incorrect answers. 
+===Invalid User Input. 
+
+This program will check to ensure only valid integers and operators are input, however a user could still pass in expressions with double operators or leading operators, causing incorrect answers. 
 
 For example, this user input
 
@@ -43,7 +45,9 @@ will return this output
 11
 }}}
 
-===Negative Numbers. This program currently does not perform arithmetic correctly for negative numbers. This is due to how the operators are used to search for the characters of the operand.
+===Negative Numbers. 
+
+This program currently does not perform arithmetic correctly for negative numbers. This is due to how the operators are used to search for the characters of the operand.
 
 For example, this user input
 
@@ -57,7 +61,9 @@ will return this output
 -6
 }}}
 
-===Division Operations. This program currently only performs integer operations. If a division operation is input that does not result in whole number answer, the remainder is thrown away and could result in an incorrect answer, or an answer of fewer significant figures than desired.
+===Division Operations. 
+
+This program currently only performs integer operations. If a division operation is input that does not result in whole number answer, the remainder is thrown away and could result in an incorrect answer, or an answer of fewer significant figures than desired.
 
 For example, this user input
 
