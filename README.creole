@@ -1,0 +1,97 @@
+==Project Calculator
+==Overview
+This program is an attempt to emulate the behavior of a standard four-function calculator in the command line (terminal). 
+
+This program currently accepts expressions of integers '0-9' and operators '+', '-', '*', 'x', and '/'.
+
+Expressions can be entered either at program start as a command line argument, or after startup.
+
+The calculator is achieved using the C++ standard string then manipulating the string characters based on character type, respecting the order of operations, PEMDAS (parentheses, exponents, multiplication and divison, addition and subtraction).
+
+==Build
+Software Used:
+* Visual Studio Code        https://code.visualstudio.com/
+* Apple Clang 13.0.0        https://clang.llvm.org/
+* GNU Make 3.81             https://www.gnu.org/software/make/
+* Git 2.32.0                https://git-scm.com/
+
+From a terminal, navigate to the root project directly and run:
+
+{{{
+make
+}}}
+
+The program can be ran from the file explorer by running the file "calc.out", or from a terminal by running the command:
+
+{{{
+./calc.out
+}}}
+
+==Known Issues
+
+* Invalid User Input. This program will check to ensure only valid integers and operators are input, however a user could still pass in expressions with double operators or leading operators, causing incorrect answers. 
+
+For example, this user input
+
+{{{
+1++1
+}}}
+
+will return this output
+
+{{{
+11
+}}}
+
+* Negative Numbers. This program currently does not perform arithmetic correctly for negative numbers. This is due to how the operators are used to search for the characters of the operand.
+
+For example, this user input
+
+{{{
+-4+2
+}}}
+
+will return this output
+
+{{{
+-6
+}}}
+
+* Division Operations. This program currently only performs integer operations. If a division operation is input that does not result in whole number answer, the remainder is thrown away and could result in an incorrect answer, or an answer of fewer significant figures than desired.
+
+For example, this user input
+
+{{{
+4/3
+}}}
+
+will return this output
+
+{{{
+1
+}}}
+
+==Planned Updates
+
+* Fix for invalid user input issue described above.
+* Fix for negative numbers issue described above.
+* Fix for division operations issue described above.
+* Add support for parentheses.
+* Add support for exponents.
+* Add support for floating point numbers.
+
+==License
+
+COPYRIGHT [2023] [MATTHEW T. BUCHANAN] [BOCAN SOFTWARE]
+
+Licensed under the Apache License, Version 2.0 (the "License);
+You may not use these files except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apacher.org/licenses.LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the license is distributed on an "as is" basis, 
+without warranties or conditions of any kind, either express or implied.
+See the License for th specific language governing permissions and
+limitations under the license.

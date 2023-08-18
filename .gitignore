@@ -1,0 +1,6 @@
+.vscode
+.DS_Store
+notes.txt
+calc.out
+src/calculator.o
+src/main.o
