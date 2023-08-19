@@ -14,6 +14,7 @@ Software Used:
 * Apple Clang 13.0.0        https://clang.llvm.org/
 * GNU Make 3.81             https://www.gnu.org/software/make/
 * Git 2.32.0                https://git-scm.com/
+* GNU Debugger 13.2         https://www.sourceware.org/gdb/
 
 From a terminal, navigate to the root project directly and run:
 
@@ -27,55 +28,23 @@ The program can be ran from the file explorer by running the file "calc.out", or
 ./calc.out
 }}}
 
-==Known Issues
+==Known Issues 
 
 ===Invalid User Input. 
 
-This program will check to ensure only valid integers and operators are input, however a user could still pass in expressions with double operators or leading operators, causing incorrect answers. 
-
-For example, this user input
-
-{{{
-1++1
-}}}
-
-will return this output
-
-{{{
-11
-}}}
+[FIXED! Program now checks and generates an error if operators are passed consecutively or at the beginning or end of an expression (with the exception of the '-' to allow negative numbers).]
 
 ===Negative Numbers. 
 
-This program currently does not perform arithmetic correctly for negative numbers. This is due to how the operators are used to search for the characters of the operand.
-
-For example, this user input
-
-{{{
--4+2
-}}}
-
-will return this output
-
-{{{
--6
-}}}
+[FIXED! Program now performs arithmetic with negative numbers correctly.]
 
 ===Division Operations. 
 
-This program currently only performs integer operations. If a division operation is input that does not result in whole number answer, the remainder is thrown away and could result in an incorrect answer, or an answer of fewer significant figures than desired.
+[FIXED! Sort of. For now, the program will provide a warning to the user if the modulus of an integer division operation is greater than zero. Until floating point operations are working in this program, this will be the solution.]
 
-For example, this user input
+===No Input Crash.
 
-{{{
-4/3
-}}}
-
-will return this output
-
-{{{
-1
-}}}
+The program currently crashes if the user hits 'ENTER' without entering any characters.
 
 ==Planned Updates
 

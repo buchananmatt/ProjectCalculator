@@ -42,8 +42,27 @@ private: // class private attributes
 
 	std::string	expression;
 
-	bool 		exit_flag;
-	bool		cli_arg;
+	struct flags {
+		bool exit;
+		bool cli_arg;
+		bool solve_err;
+		bool left_neg;
+		bool right_neg;
+		bool modulus;
+	} flag;
+
+	enum errors {
+		DIVIDE_BY_ZERO,
+		SOLVE_ERROR,
+		INTEGER_DIVIDE_REMAINDER,
+		INVALID_INPUT_INVALID_OPERATOR,
+		INVALID_INPUT_THREE_MINUS,
+		INVALID_INPUT_MINUS_LAST,
+		INVALID_INPUT_OPERATOR_FIRST,
+		INVALID_INPUT_OPERATOR_LAST,
+		INVALID_INPUT_DUAL_OPERATORS,
+		INVALID_INPUT_INVALID_INTEGER
+	} error_code;
 
 private: // class private methods
 
@@ -51,8 +70,8 @@ private: // class private methods
 	int		GetLeftOperand(int, int*);
 	int		GetRightOperand(int, int*);
 	int 	PerformIntegerOperation(int, int, char);
-
 	bool 	IsOperator(char);
+	void	PrintError(int);
 
 // future implementation to handle floating point numbers
 //	float	GetLeftFloatOperand(int, int*);

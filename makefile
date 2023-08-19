@@ -9,5 +9,9 @@ calculator.o: ./src/calculator.cpp ./src/calculator.hpp
 	g++ -c ./src/calculator.cpp
 
 clean:
-	rm ./src/*.o
+	rm -r calc.out.dSYM
 	rm calc.out
+	rm ./src/*.o
+	
+debug: ./src/main.cpp ./src/calculator.cpp
+	g++ ./src/main.cpp ./src/calculator.cpp -o calc.out -g
