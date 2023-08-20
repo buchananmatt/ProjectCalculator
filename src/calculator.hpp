@@ -36,19 +36,19 @@ public:
 	void 	Solve();
 	void 	Output();
 	bool 	CheckExitFlag();
-	void	Exit();
 
-private: // class private attributes
+// class private attributes
+private: 
 
 	std::string	expression;
 
 	struct flags {
-		bool exit;
-		bool cli_arg;
-		bool solve_err;
-		bool left_neg;
-		bool right_neg;
-		bool modulus;
+		bool 	exit;
+		bool 	cli_arg;
+		bool 	solve_err;
+		bool 	left_neg;
+		bool 	right_neg;
+		bool 	modulus;
 	} flag;
 
 	enum errors {
@@ -61,16 +61,21 @@ private: // class private attributes
 		INVALID_INPUT_OPERATOR_FIRST,
 		INVALID_INPUT_OPERATOR_LAST,
 		INVALID_INPUT_DUAL_OPERATORS,
-		INVALID_INPUT_INVALID_INTEGER
+		INVALID_INPUT_INVALID_INTEGER,
+		INVALID_INPUT_LEFT_PAREN,
+		INVALID_INPUT_RIGHT_PAREN,
+		INVALID_INPUT_PARENTHESES_MISMATCH
 	} error_code;
 
-private: // class private methods
+// class private methods
+private:
 
 	bool	ValidateInputString();
-	int		GetLeftOperand(int, int*);
-	int		GetRightOperand(int, int*);
+	int		GetLeftOperand(std::string*, int, int*);
+	int		GetRightOperand(std::string*, int, int*);
 	int 	PerformIntegerOperation(int, int, char);
 	bool 	IsOperator(char);
+	bool	IsInteger(char);
 	void	PrintError(int);
 
 // future implementation to handle floating point numbers
