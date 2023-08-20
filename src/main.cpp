@@ -34,14 +34,8 @@ int main(int argc, char** argv) {
 			calc.Solve();
 			calc.Output();
 		}
-		else
-			if(!calc.CheckExitFlag()) {
-				continue;
-			}
 
 	} while (!calc.CheckExitFlag());
-		
-	calc.Exit();
 
 	return 0;
 }
