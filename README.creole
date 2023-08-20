@@ -2,13 +2,15 @@
 ==Overview
 This program is an attempt to emulate the behavior of a standard four-function calculator in the terminal. 
 
-This program currently accepts expressions of integers '0-9' and operators '+', '-', '*', 'x', '/', '(', ')'.
+This program currently accepts expressions of integers '0-9' and operators '+', '-', '*', 'x', '/', '(', ')', '^', '%'.
 
 Expressions can be entered either at program start as a command line argument, or after startup.
 
 The calculator uses the C++ standard string to store the user input expression, then manipulates the string characters based on character type.
 
 The order of operations, Parentheses, Exponents, Multiplication, Division, Addition, Subtraction, is followed by the program.
+
+This program can also compute the modulus between two operands. To observe the order of operations, a modulus operation will occur last and the result will be the remainder after the entire expression is evaluated.
 
 ==Build
 Software Used:
@@ -18,7 +20,7 @@ Software Used:
 * Git 2.32.0                https://git-scm.com/
 * GNU Debugger 13.2         https://www.sourceware.org/gdb/
 
-From a terminal, navigate to the root project directly and run:
+From a terminal, navigate to the root project directory and run:
 
 {{{
 make
@@ -60,8 +62,8 @@ Best practice when entering a command line expression to solve is to enclose the
 * Fix for negative numbers issue described above. DONE!
 * Fix for division operations issue described above. DONE!
 * Add support for parentheses. DONE!
-* Add support for exponents.
-* Add support for floating point numbers.
+* Add support for exponents. DONE!
+* Add support for floating point numbers...WORKING
 
 ==License
 

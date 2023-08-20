@@ -48,7 +48,6 @@ Calculator::Calculator() {
 // brief Class Destructor.
 // brief Unused function as all data is allocated on the stack.
 // param None.
-
 Calculator::~Calculator() { }
 
 // brief Receives the expression to solve as user input as either a command line argument or from the input stream.
@@ -102,9 +101,22 @@ void Calculator::Solve() {
 			std::string paren_expr = expression.substr( (left_paren_index + 1), (i - left_paren_index) - 1);
 			expression.erase(left_paren_index, (i - left_paren_index) + 1);
 
-			// resolve parentheses expression multiplication and division operators left to right
+			// resolve parentheses expression exponent operators left to right
 			for(int i = 0; i < paren_expr.size(); i++) {
-				if(paren_expr.at(i) == 'x' || paren_expr.at(i) == '*' || paren_expr.at(i) == '/') {
+				if(paren_expr.at(i) == '^') {
+					op1 = GetLeftOperand(&paren_expr, i-1, &left_index);
+					op2 = GetRightOperand(&paren_expr, i+1, &right_index);
+					result = PerformIntegerOperation(op1, op2, paren_expr.at(i));
+					paren_expr.erase(left_index, (right_index - left_index) +1);
+					paren_expr.insert(left_index, std::to_string(result));
+					i = left_index;
+				}
+				result = 0; op1 = 0; op2 = 0; left_index = 0; right_index = 0;
+			}			
+
+			// resolve parentheses expression multiplication and division, operators left to right
+			for(int i = 0; i < paren_expr.size(); i++) {
+				if( paren_expr.at(i) == 'x' || paren_expr.at(i) == '*' || paren_expr.at(i) == '/'){
 					op1 = GetLeftOperand(&paren_expr, i-1, &left_index);
 					op2 = GetRightOperand(&paren_expr, i+1, &right_index);
 					result = PerformIntegerOperation(op1, op2, paren_expr.at(i));
@@ -127,6 +139,20 @@ void Calculator::Solve() {
 				}
 				result = 0; op1 = 0; op2 = 0; left_index = 0; right_index = 0;
 			}
+
+			// resolve parentheses expression modulus operators left to right
+			for(int i = 0; i < paren_expr.size(); i++) {
+				if(paren_expr.at(i) == '+' || paren_expr.at(i) == '-') {
+				op1 = GetLeftOperand(&paren_expr, i-1, &left_index);
+				op2 = GetRightOperand(&paren_expr, i+1, &right_index);
+				result = PerformIntegerOperation(op1, op2, paren_expr.at(i));
+				paren_expr.erase(left_index, (right_index - left_index) + 1);
+				paren_expr.insert(left_index, std::to_string(result));
+				i = left_index;
+			}
+			result = 0; op1 = 0; op2 = 0; left_index = 0; right_index = 0;
+	}
+
 			expression.insert(left_paren_index, paren_expr);
 			i = -1;
 			left_paren_index = 0;	
@@ -134,9 +160,22 @@ void Calculator::Solve() {
 
 	}
 
-	// resolve multiplication and division operator expressions left to right
+	// resolve exponent operator expressions left to right
 	for(int i = 0; i < expression.size(); i++) {
-		if(expression.at(i) == 'x' || expression.at(i) == '*' || expression.at(i) == '/') {
+		if(expression.at(i) == '^') {
+			op1 = GetLeftOperand(&expression, i-1, &left_index);
+			op2 = GetRightOperand(&expression, i+1, &right_index);
+			result = PerformIntegerOperation(op1, op2, expression.at(i));
+			expression.erase(left_index, (right_index - left_index) +1);
+			expression.insert(left_index, std::to_string(result));
+			i = left_index;
+		}
+		result = 0; op1 = 0; op2 = 0; left_index = 0; right_index = 0;
+	}
+
+	// resolve multiplication, and division operator expressions left to right
+	for(int i = 0; i < expression.size(); i++) {
+		if( expression.at(i) == 'x' || expression.at(i) == '*' || expression.at(i) == '/') {
 			op1 = GetLeftOperand(&expression, i-1, &left_index);
 			op2 = GetRightOperand(&expression, i+1, &right_index);
 			result = PerformIntegerOperation(op1, op2, expression.at(i));
@@ -150,6 +189,19 @@ void Calculator::Solve() {
 	// resolve addition and subtraction operator expressions left to right
 	for(int i = 0; i < expression.size(); i++) {
 		if(expression.at(i) == '+' || expression.at(i) == '-') {
+			op1 = GetLeftOperand(&expression, i-1, &left_index);
+			op2 = GetRightOperand(&expression, i+1, &right_index);
+			result = PerformIntegerOperation(op1, op2, expression.at(i));
+			expression.erase(left_index, (right_index - left_index) + 1);
+			expression.insert(left_index, std::to_string(result));
+			i = left_index;
+		}
+		result = 0; op1 = 0; op2 = 0; left_index = 0; right_index = 0;
+	}
+
+	// resolve modulus operator expressions left to right
+	for(int i = 0; i < expression.size(); i++) {
+		if(expression.at(i) == '%' ) {
 			op1 = GetLeftOperand(&expression, i-1, &left_index);
 			op2 = GetRightOperand(&expression, i+1, &right_index);
 			result = PerformIntegerOperation(op1, op2, expression.at(i));
@@ -278,6 +330,7 @@ bool Calculator::ValidateInputString() {
 				break;
 
 			case '/':
+			case '%':
 
 				// check for a divide by zero error
 				if(expression.at(i+1) == '0') {
@@ -289,6 +342,7 @@ bool Calculator::ValidateInputString() {
 			case '+':
 			case 'x':
 			case '*':
+			case '^':
 
 				// check if operator was passed as first character
 				if(i == 0) {
@@ -307,7 +361,9 @@ bool Calculator::ValidateInputString() {
 							expression.at(i-1) == '+' ||
 							expression.at(i-1) == 'x' ||
 							expression.at(i-1) == '*' ||
-							expression.at(i-1) == '/'  ) {
+							expression.at(i-1) == '/' ||
+							expression.at(i-1) == '%' ||
+							expression.at(i-1) == '^' ) {
 
 					PrintError(INVALID_INPUT_DUAL_OPERATORS);
 					if(flag.cli_arg) flag.exit = true;
@@ -412,6 +468,7 @@ int Calculator::GetRightOperand(std::string* expr, int index, int* right_index) 
 // param Character is the operator to use in the operation.
 int Calculator::PerformIntegerOperation(int operand1, int operand2, char oper) {
 	switch (oper) {
+		case '^': return std::pow(operand1, operand2);
 		case 'x': 
 		case '*': return operand1 * operand2;
 		case '/': 
@@ -428,6 +485,15 @@ int Calculator::PerformIntegerOperation(int operand1, int operand2, char oper) {
 				flag.modulus = true;
 			}
 			return operand1 / operand2;
+		case '%':
+
+			// check for a divide by zero error
+			if(operand2 == 0) {
+				PrintError(DIVIDE_BY_ZERO);
+				flag.solve_err = true;
+				return 0xFF;
+			}
+			return operand1 % operand2;
 		case '+': return operand1 + operand2;
 		case '-': return operand1 - operand2;
 		default: 
@@ -447,9 +513,11 @@ bool Calculator::IsOperator(char c) {
 		case 'x':
 		case '*':
 		case '/':
+		case '%':
 		case '+':
 		case '(':
 		case ')':
+		case '^':
 			return true;
 		default:
 			return false;
@@ -489,7 +557,7 @@ void Calculator::PrintError(int error_code) {
 			cerr << "ERROR " << error_code << ". UNABLE TO COMPUTE SOLUTION." << endl;
 			break;
 		case(INTEGER_DIVIDE_REMAINDER):
-			cerr << "WARNING. DIVISION OPERATION RESULTED IN A NONINTEGER SOLUTION. SOLUTION IS ROUNDED DOWN TO THE NEXT WHOLE NUMBER." << endl;
+			cerr << "WARNING. DIVISION OPERATION RESULTED IN A NONINTEGER SOLUTION. SOLUTION MAY NOT BE CORRECT." << endl;
 			break;
 		case(INVALID_INPUT_INVALID_OPERATOR):
 			cerr << "ERROR " << error_code << ". INVALID OPERATOR." << endl;

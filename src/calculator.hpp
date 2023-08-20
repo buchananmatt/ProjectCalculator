@@ -37,7 +37,6 @@ public:
 	void 	Output();
 	bool 	CheckExitFlag();
 
-// class private attributes
 private: 
 
 	std::string	expression;
@@ -67,7 +66,6 @@ private:
 		INVALID_INPUT_PARENTHESES_MISMATCH
 	} error_code;
 
-// class private methods
 private:
 
 	bool	ValidateInputString();
@@ -78,10 +76,6 @@ private:
 	bool	IsInteger(char);
 	void	PrintError(int);
 
-// future implementation to handle floating point numbers
-//	float	GetLeftFloatOperand(int, int*);
-//	float	GetRightFloatOperand(int, int*);
-//	float	PerformFloatOperation(float, float, char);
 };
 
 } // NAMESPACE BOCAN	
