@@ -141,12 +141,12 @@ or require heavy CPU overhead when not needed. I ultimately decided to use types
 have a consistent data size which can accomodate relatively large numbers and numbers to many
 significant digits.
 
-|=  |=table |=type      |=size    |=max base 10    |=precision         |
-|a  | table | short     | 2 byte  |         65,536 | 1                 |
-|b  | table | int       | 4 bytes |  4,294,967,296 | 1                 |
-|c  | table | long      | 8 bytes | --really big-- | 1                 |
-|e  | table | float     | 4 bytes |                | 0.0000001         |
-|d  | table | double    | 8 bytes |                | 0.000000000000001 |
+|=Data Type |=Size    |=Max No. (Base 10) |=Precision         |
+| short     | 2 bytes |         2^8       | 1                 |
+| int       | 4 bytes |         2^32      | 1                 |
+| **long**  | 8 bytes |         2^64      | 1                 |
+| float     | 4 bytes |         2^32      | 0.0000001         |
+| **double**| 8 bytes |         2^64      | 0.000000000000001 |
 
 ==Code Design
 
