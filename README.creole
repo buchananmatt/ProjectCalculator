@@ -1,16 +1,21 @@
 =Project Calculator
 ==Overview
-This program is an attempt to emulate the behavior of a standard four-function calculator in the terminal. 
+This program is an attempt to emulate the behavior of a standard four-function calculator in the terminal via Command Line Interface. 
 
-This program currently accepts expressions of integers '0-9' and operators '+', '-', '*', 'x', '/', '(', ')', '^', '%'.
+This program currently accepts expressions of integers '0-9' and operators '+', '-', '*', 'x', '/', '(', ')', '^'.
 
 Expressions can be entered either at program start as a command line argument, or after startup.
 
 The calculator uses the C++ standard string to store the user input expression, then manipulates the string characters based on character type.
 
-The order of operations, Parentheses, Exponents, Multiplication, Division, Addition, Subtraction, is followed by the program.
+The order of operations, PEMDAS, is followed by the program.
 
-This program can also compute the modulus between two operands. To observe the order of operations, a modulus operation will occur last and the result will be the remainder after the entire expression is evaluated.
+*Parentheses
+*Exponents (and Roots)
+*Multiplication (and Division)
+*Division
+*Addition (and Subtraction)
+*Subtraction
 
 ==Build
 Software Used:
@@ -63,7 +68,7 @@ Best practice when entering a command line expression to solve is to enclose the
 * Fix for division operations issue described above. DONE!
 * Add support for parentheses. DONE!
 * Add support for exponents. DONE!
-* Add support for floating point numbers...WORKING
+* Add support for floating point numbers...DONE!
 
 ==Project Goals
 
@@ -103,23 +108,65 @@ These interactions inspired how the main function and the Calculator public meth
 
 **ValidateInputString**
 
-**GetLeftOperand**
+**ResolveExpSqrLoop()**
 
-**GetRightOperand**
+**ResolveMulDivLoop()**
 
-**PerformIntegerOperation**
+**ResolveAddSubLoop()**
 
-**IsOperator**
+**GetLeftOperand()**
 
-**IsInteger**
+**GetLeftOperand()**
 
-**PrintError**
+**GetRightOperand()**
+
+**GetRightOperand()**
+
+**PerformMathOperation()**
+
+**PerformMathOperation()**
+
+**IsOperator()**
+
+**IsInteger()**
+
+**PrintError()**
+
+===Number Handling
+
+I began this project focused solely on integers and standard four function arithmetic, 
+however a goal of mine was to make the program flexible enough to handle large numbers and 
+floating point numbers if the user desired, without having to allocate large amounts of memory
+or require heavy CPU overhead when not needed. I ultimately decided to use types long and double to
+have a consistent data size which can accomodate relatively large numbers and numbers to many
+significant digits.
+
+|=  |=table |=type      |=size    |=max base 10    |=precision         |
+|a  | table | short     | 2 byte  |         65,536 | 1                 |
+|b  | table | int       | 4 bytes |  4,294,967,296 | 1                 |
+|c  | table | long      | 8 bytes | --really big-- | 1                 |
+|e  | table | float     | 4 bytes |                | 0.0000001         |
+|d  | table | double    | 8 bytes |                | 0.000000000000001 |
+
+==Code Design
+
+In general, I spent a healthy amount of time considering the syntax and conventions of various 
+portions of the code and the file system. I took inspiration from the Google C++ Style Guide, but
+I did deviate at various portions if there was another convention that I liked better. My goal 
+was to have a clean and consistent style throughout the project.
+
+==Performance
+
+I am still working on my benchmarking procedures, so right now the only real metric I have is final 
+size of the binary. The size of the current version of the program is 81 KB (81,576). I am certain
+this can be optimized, however it isn't readily apparent to me at the time of this last commit.
 
 ==Project Timeline
 
 * Project Start | 24 July 2023
 * Initial Capability | 18 August 2023
 * Parentheses and Exponent Capability | 20 August 2023
+* Initial Floating Point Capability | 23 August 2023
 
 ==License
 

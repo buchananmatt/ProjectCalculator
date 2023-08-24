@@ -39,7 +39,7 @@ public:
 
 private: 
 
-	std::string	expression;
+	std::string	m_expression;
 
 	struct flags {
 		bool 	exit;
@@ -48,7 +48,8 @@ private:
 		bool 	left_neg;
 		bool 	right_neg;
 		bool 	modulus;
-	} flag;
+		bool	floating;
+	} m_flag;
 
 	enum errors {
 		DIVIDE_BY_ZERO,
@@ -63,17 +64,30 @@ private:
 		INVALID_INPUT_INVALID_INTEGER,
 		INVALID_INPUT_LEFT_PAREN,
 		INVALID_INPUT_RIGHT_PAREN,
-		INVALID_INPUT_PARENTHESES_MISMATCH
-	} error_code;
+		INVALID_INPUT_PARENTHESES_MISMATCH,
+		INVALID_INPUT_RADIX_POINT
+	} m_error_code;
 
 private:
 
 	bool	ValidateInputString();
-	int		GetLeftOperand(std::string*, int, int*);
-	int		GetRightOperand(std::string*, int, int*);
-	int 	PerformIntegerOperation(int, int, char);
+
+	void 	ResolveExpSqrLoop(std::string*);
+	void	ResolveMulDivLoop(std::string*);
+	void	ResolveAddSubLoop(std::string*);
+
+	long	GetLeftOperand(std::string*, int, int*, long);
+	double	GetLeftOperand(std::string*, int, int*, double);
+
+	long	GetRightOperand(std::string*, int, int*, long);
+	double  GetRightOperand(std::string*, int, int*, double);
+
+	long 	PerformMathOperation(long, long, char);
+	double  PerformMathOperation(double, double, char);
+
 	bool 	IsOperator(char);
 	bool	IsInteger(char);
+
 	void	PrintError(int);
 
 };

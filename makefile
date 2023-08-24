@@ -9,7 +9,6 @@ calculator.o: ./src/calculator.cpp ./src/calculator.hpp
 	g++ -c ./src/calculator.cpp
 
 clean:
-	rm -r calc.out.dSYM
 	rm calc.out
 	rm ./src/*.o
 	
