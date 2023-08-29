@@ -1,6 +1,4 @@
 .vscode
 .DS_Store
-ProjectCalculator.code-workspace
-calc.out
-src/calculator.o
-src/main.o
+*.code-workspace
+*.o

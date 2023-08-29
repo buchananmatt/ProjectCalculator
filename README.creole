@@ -96,13 +96,15 @@ These interactions inspired how the main function and the Calculator public meth
 
 ===Public Methods (User Interface)
 
-**Input**
+**Initialize()**
 
-**Solve**
+**Input()**
 
-**Output**
+**Solve()**
 
-**CheckExitFlag**
+**Output()**
+
+**CheckExitFlag()**
 
 ===Private Methods (Under the Hood)
 

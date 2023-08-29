@@ -22,20 +22,21 @@
 
 #include <iostream>
 
-#include "calculator.hpp"
+#include "./calculator/calculator.hpp"
 
 
 int main(int argc, char** argv) {
 
-	bocan::Calculator calc;
+	auto& calculator = bocan::Calculator::Get();
+ 
+	calculator.Initialize();
 
 	do {
-		if(!calc.Input(argc, argv)) {
-			calc.Solve();
-			calc.Output();
+		if(!calculator.Input(argc, argv)) {
+			calculator.Solve();
+			calculator.Output();
 		}
-
-	} while (!calc.CheckExitFlag());
+	} while (!calculator.CheckExitFlag());
 
 	return 0;
 }

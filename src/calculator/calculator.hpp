@@ -29,15 +29,16 @@ namespace bocan {
 class Calculator {
 
 public: 
-	Calculator();
-	~Calculator();
+	static Calculator& Get() { return s_instance; }
 
+	void	Initialize();
 	bool 	Input(int, char**);
 	void 	Solve();
 	void 	Output();
 	bool 	CheckExitFlag();
 
 private: 
+	static Calculator s_instance;
 
 	std::string	m_expression;
 
@@ -70,6 +71,10 @@ private:
 
 private:
 
+	Calculator() {}
+	Calculator(const Calculator&) = delete;
+	~Calculator() {}
+
 	bool	ValidateInputString();
 
 	void 	ResolveExpSqrLoop(std::string*);
@@ -94,4 +99,4 @@ private:
 
 } // NAMESPACE BOCAN	
 
-#endif	//CALCULATOR_HPP
+#endif	// CALCULATOR_HPP
