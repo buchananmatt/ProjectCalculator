@@ -27,7 +27,7 @@
 
 int main(int argc, char** argv) {
 
-	auto& calculator = bocan::Calculator::Get();
+	auto& calculator = bocan::calc::Calculator::Get();
  
 	calculator.Initialize();
 

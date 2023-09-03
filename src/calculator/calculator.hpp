@@ -26,6 +26,8 @@ class string;
 
 namespace bocan {
 
+namespace calc {
+
 class Calculator {
 
 public: 
@@ -96,6 +98,8 @@ private:
 	void	PrintError(int);
 
 };
+
+} // NAMESPACE CALC
 
 } // NAMESPACE BOCAN	
 

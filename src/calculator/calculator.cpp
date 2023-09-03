@@ -30,7 +30,7 @@ using std::getline;
 
 #include "calculator.hpp"
 
-using bocan::Calculator;
+using bocan::calc::Calculator;
 
 // brief Singleton instance of the Calculator class object.
 Calculator Calculator::s_instance; 
