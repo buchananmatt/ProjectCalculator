@@ -21,12 +21,9 @@
 #ifndef CALCULATOR_HPP
 #define CALCULATOR_HPP
 
-
-class string;
+#include <string>
 
 namespace bocan {
-
-namespace calc {
 
 class Calculator {
 
@@ -98,8 +95,6 @@ private:
 	void	PrintError(int);
 
 };
-
-} // NAMESPACE CALC
 
 } // NAMESPACE BOCAN	
 

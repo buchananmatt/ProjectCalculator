@@ -11,5 +11,8 @@ calculator.o: ./src/calculator/calculator.cpp ./src/calculator/calculator.hpp
 	c++ -c ./src/calculator/calculator.cpp
 
 clean:
-	rm ./src/*.o
-	rm ./src/calculator/*.o
+	rm -f ./src/*.o
+	rm -f ./src/calculator/*.o
+
+run:
+	./bin/calc.out

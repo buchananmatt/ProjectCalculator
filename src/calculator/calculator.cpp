@@ -28,17 +28,20 @@ using std::cerr;
 using std::endl;
 using std::getline;
 
-#include "calculator.hpp"
+#include "Calculator.hpp"
 
-using bocan::calc::Calculator;
+using bocan::Calculator;
 
 // brief Singleton instance of the Calculator class object.
 Calculator Calculator::s_instance; 
 
-// brief Initializes calculator member variables.
-// brief Sets all flags to false and prints initial user instructions.
-// param None.
-// return None.
+///
+/// @brief initializes calculator member variables.
+/// @brief sets all flags to false and prints initial user instructions.
+/// @param
+/// @return
+/// @todo
+///
 void Calculator::Initialize() {
 
 	m_flag.exit = false;
@@ -53,10 +56,13 @@ void Calculator::Initialize() {
 	cout << ">INPUT EXPRESSION AND PRESS 'ENTER' OR PRESS 'Q'+'ENTER' TO EXIT." << endl;
 }
 
-// brief Receives the expression to solve as user input as either a command line argument or from the input stream.
-// param[in] Integer is the number of command line arguments passed at runtime.
-// param[in] Character Pointer Pointer is the vector of command line arguments passed at runtime.
-// return 0 if user input is valid and 1 if the input conains an error.
+///
+/// @brief receives the expression to solve as user input as either a command line argument or from the input stream.
+/// @param[in] integer is the number of command line arguments passed at runtime.
+/// @param[in] char pointer pointer is the vector of command line arguments passed at runtime.
+/// @return 0 if user input is valid and 1 if the input conains an error.
+/// @todo
+///
 bool Calculator::Input(int argc, char** argv) {
 	m_flag.solve_err = false;
 	m_expression.clear();
@@ -83,9 +89,12 @@ bool Calculator::Input(int argc, char** argv) {
 	return ValidateInputString();
 }
 
-// brief Solves the expression within the standard string using the order of operations PEMDAS.
-// param None.
-// return None.
+///
+/// @brief solves the expression within the standard string using the order of operations PEMDAS.
+/// @param
+/// @return
+/// @todo
+///
 void Calculator::Solve() {
 
 	int left_paren_index = 0;
@@ -125,9 +134,12 @@ void Calculator::Solve() {
 
 }
 
-// brief Prints the solution or prints an error code.
-// param None.
-// return None.
+///
+/// @brief prints the solution or prints an error code.
+/// @param
+/// @return
+/// @todo
+///
 void Calculator::Output() {
 	if (!m_flag.solve_err) {
 		cout << ">" << m_expression << endl;
@@ -142,17 +154,23 @@ void Calculator::Output() {
 	m_flag.floating = false;
 }
 
-// brief Returns the value of the exit flag.
-// param None.
-// return 0 if the exit flag is false, 1 if the exit flag is true.
+///
+/// @brief returns the value of the exit flag.
+/// @param 
+/// @return boolean 0 if the exit flag is false, 1 if the exit flag is true.
+/// @todo
+///
 bool Calculator::CheckExitFlag() {
 	return m_flag.exit;
 }
 
-// brief Checks for valid integers, operators, and syntax, and prepares the expression for the solver.
-// brief Sets appropriate flags that tell the Solver how to solve the expression.
-// param None.
-// return 0 if expression passes all checks. Returns 1 and prints error code if expression fails.
+///
+/// @brief checks for valid integers, operators, and syntax, and prepares the expression for the solver.
+/// @brief sets appropriate flags that tell the solver how to solve the expression.
+/// @param
+/// @return boolean 0 if expression passes all checks. returns 1 and prints error code if expression fails.
+/// @todo
+///
 bool Calculator::ValidateInputString() {
 
 	// check for user exit command
@@ -326,10 +344,13 @@ bool Calculator::ValidateInputString() {
 	return 0;
 }
 
-// brief Loop to solve for any exponent operator expressions within the string.
-// brief Function will perform operation for either a double or a long based on the floating point flag.
-// param[in/out] String Reference to the expression the function will loop through to solve.
-// return None.
+///
+/// @brief loop to solve for any exponent operator expressions within the string.
+/// @brief function will perform operation for either a double or a long based on the floating point flag.
+/// @param[in] string reference to the expression the function will loop through to solve.
+/// @return none.
+/// @todo
+///
 void Calculator::ResolveExpSqrLoop(std::string* expr) {
 
 	int left_index = 0;
@@ -373,10 +394,13 @@ void Calculator::ResolveExpSqrLoop(std::string* expr) {
 	}
 }
 
-// brief Loop to solve for any multiplication or division operator expressions within the string.
-// brief Function will perform operation for either a double or a long based on the floating point flag.
-// param[in/out] String Reference to the expression the function will loop through to solve.
-// return None.
+///
+/// @brief loop to solve for any multiplication or division operator expressions within the string.
+/// @brief function will perform operation for either a double or a long based on the floating point flag.
+/// @param[in] string reference to the expression the function will loop through to solve.
+/// @return none.
+/// @todo
+///
 void Calculator::ResolveMulDivLoop(std::string* expr) {
 
 	int left_index = 0;
@@ -420,10 +444,13 @@ void Calculator::ResolveMulDivLoop(std::string* expr) {
 	}
 }
 
-// brief Loop to solve for any addition or subtraction operator expressions within the string.
-// brief Function will perform operation for either a double or a long based on the floating point flag.
-// param[in/out] String Reference to the expression the function will loop through to solve.
-// return None.
+///
+/// @brief loop to solve for any addition or subtraction operator expressions within the string.
+/// @brief function will perform operation for either a double or a long based on the floating point flag.
+/// @param[in] string reference to the expression the function will loop through to solve.
+/// @return none.
+/// @todo
+///
 void Calculator::ResolveAddSubLoop(std::string* expr) {
 
 	int left_index = 0;
@@ -467,12 +494,15 @@ void Calculator::ResolveAddSubLoop(std::string* expr) {
 	}
 }
 
-// brief Retreives the left operand of a math operation.
-// param[in] String Reference to the current expression being solved.
-// param[in] Integer is the positiion of the rightmost character of the left operand.
-// param[out] Integer Pointer to the position of the leftmost character of the operand.
-// param[in] Long is a throwaway argument to trigger the correct overloaded function.
-// return Long (8 bytes) representing the left operand.
+///
+/// @brief retreives the left operand of a math operation.
+/// @param[in] string reference to the current expression being solved.
+/// @param[in] integer is the positiion of the rightmost character of the left operand.
+/// @param[out] integer pointer to the position of the leftmost character of the operand.
+/// @param[in] long is a throwaway argument to trigger the correct overloaded function.
+/// @return long (8 bytes) representing the left operand.
+/// @todo
+///
 long Calculator::GetLeftOperand(std::string* expr, int index, int* left_index, long l) {
 
 	long op = 0;
@@ -499,12 +529,15 @@ long Calculator::GetLeftOperand(std::string* expr, int index, int* left_index, l
 	}
 }
 
-// brief Retreives the left operand of a math operation.
-// param[in] String Reference to the current expression being solved.
-// param[in] Integer is the positiion of the rightmost character of the left operand.
-// param[out] Integer Pointer to the position of the leftmost character of the operand.
-// param[in] Double is a throwaway argument to trigger the correct overloaded function.
-// return Double (8 bytes) representing the left operand.
+///
+/// @brief retreives the left operand of a math operation.
+/// @param[in] string reference to the current expression being solved.
+/// @param[in] integer is the positiion of the rightmost character of the left operand.
+/// @param[out] integer pointer to the position of the leftmost character of the operand.
+/// @param[in] double is a throwaway argument to trigger the correct overloaded function.
+/// @return double (8 bytes) representing the left operand.
+/// @todo
+///
 double Calculator::GetLeftOperand(std::string* expr, int index, int* left_index, double d) {
 
 	double op = 0;
@@ -556,12 +589,15 @@ double Calculator::GetLeftOperand(std::string* expr, int index, int* left_index,
 
 }
 
-// brief Retreives the right operand of a math operation.
-// param[in] String Reference to the current expression being solved.
-// param[in] Integer is the position of the leftmost character of the right operand.
-// param[out] Integer Pointer to the position of the rightmost character of the operand.
-// param[in] Long is a throwaway argument to trigger the correct overloaded function.
-// return Long (8 bytes) representing the right operand.
+///
+/// @brief retreives the right operand of a math operation.
+/// @param[in] string reference to the current expression being solved.
+/// @param[in] integer is the position of the leftmost character of the right operand.
+/// @param[out] integer pointer to the position of the rightmost character of the operand.
+/// @param[in] long is a throwaway argument to trigger the correct overloaded function.
+/// @return long (8 bytes) representing the right operand.
+/// @todo
+///
 long Calculator::GetRightOperand(std::string* expr, int index, int* right_index, long l) {
 
 	long op = 0;
@@ -595,12 +631,15 @@ long Calculator::GetRightOperand(std::string* expr, int index, int* right_index,
 	}
 }
 
-// brief Retreives the right operand of a math operation.
-// param[in] String Reference to the current expression being solved.
-// param[in] Integer is the position of the leftmost character of the right operand.
-// param[out] Integer Pointer to the position of the rightmost character of the operand.
-// param[in] Double is a throwaway argument to trigger the correct overloaded function.
-// return Double (8 bytes) representing the right operand.
+///
+/// @brief retreives the right operand of a math operation.
+/// @param[in] string reference to the current expression being solved.
+/// @param[in] integer is the position of the leftmost character of the right operand.
+/// @param[out] integer pointer to the position of the rightmost character of the operand.
+/// @param[in] double is a throwaway argument to trigger the correct overloaded function.
+/// @return double (8 bytes) representing the right operand.
+/// @todo
+///
 double Calculator::GetRightOperand(std::string* expr, int index, int* right_index, double d) {
 
 	double op = 0;
@@ -656,11 +695,14 @@ double Calculator::GetRightOperand(std::string* expr, int index, int* right_inde
 	}
 }
 
-// brief Performs the specified math operation.
-// param[in] Long is the first (left) operand.
-// param[in] Long is the next (right) operand.
-// param[in] Character is the operator specifying which operation to execute.
-// return Solution of the operation as a long (8 bytes).
+///
+/// @brief performs the specified math operation.
+/// @param[in] long is the first (left) operand.
+/// @param[in] long is the next (right) operand.
+/// @param[in] char is the operator specifying which operation to execute.
+/// @return solution of the operation as a long (8 bytes).
+/// @todo
+///
 long Calculator::PerformMathOperation(long operand1, long operand2, char oper) {
 	switch (oper) {
 		case '^': return std::pow(operand1, operand2);
@@ -691,11 +733,14 @@ long Calculator::PerformMathOperation(long operand1, long operand2, char oper) {
 	}
 }
 
-// brief Performs the specified math operation.
-// param[in] Double is the first (left) operand.
-// param[in] Double is the next (right) operand.
-// param[in] Character is the operator specifying which operation to execute.
-// return Solution of the operation as a double (8 bytes).
+///
+/// @brief performs the specified math operation.
+/// @param[in] double is the first (left) operand.
+/// @param[in] double is the next (right) operand.
+/// @param[in] char is the operator specifying which operation to execute.
+/// @return solution of the operation as a double (8 bytes).
+/// @todo
+///
 double Calculator::PerformMathOperation(double operand1, double operand2, char oper) {
 	switch (oper) {
 		case '^': return std::pow(operand1, operand2);
@@ -721,10 +766,13 @@ double Calculator::PerformMathOperation(double operand1, double operand2, char o
 	}
 }
 
-// brief Checks if character is a valid operator within the program.
-// brief Sets the flag for a negative left operand if the character is a '-'.
-// param[in] Character is the symbol being checked.
-// return True if argument is a valid operator. 
+///
+/// @brief checks if character is a valid operator within the program.
+/// @brief sets the flag for a negative left operand if the character is a '-'.
+/// @param[in] char is the symbol being checked.
+/// @return boolean true if argument is a valid operator. 
+/// @todo
+///
 bool Calculator::IsOperator(char c) {
 	switch (c) {
 		case '-':
@@ -743,9 +791,12 @@ bool Calculator::IsOperator(char c) {
 	}
 }
 
-// brief Checks if character is a valid integer within the program.
-// param[in] Character is the symbol being checked.
-// return True if argument is a valid integer.
+///
+/// @brief checks if character is a valid integer within the program.
+/// @param[in] char is the symbol being checked.
+/// @return boolean true if argument is a valid integer.
+/// @todo
+///
 bool Calculator::IsInteger(char c) {
 	switch(c) {
 		case '0':
@@ -764,9 +815,12 @@ bool Calculator::IsInteger(char c) {
 	}
 }
 
-// brief Prints the error code and description for the specified error.
-// param[in] Integer/Enumeration corresponding to the error_code enum.
-// return None.
+///
+/// @brief prints the error code and description for the specified error.
+/// @param[in] enumerator corresponding to the error_code enum.
+/// @return none.
+/// @todo
+///
 void Calculator::PrintError(int error_code) {
 	switch(error_code) {
 		case(DIVIDE_BY_ZERO):

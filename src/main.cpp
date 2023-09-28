@@ -22,12 +22,12 @@
 
 #include <iostream>
 
-#include "./calculator/calculator.hpp"
+#include "./Calculator/Calculator.hpp"
 
 
 int main(int argc, char** argv) {
 
-	auto& calculator = bocan::calc::Calculator::Get();
+	auto& calculator = bocan::Calculator::Get();
  
 	calculator.Initialize();
 
